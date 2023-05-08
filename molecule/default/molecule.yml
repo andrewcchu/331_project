@@ -1,0 +1,25 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: vagrant
+  provider:
+    name: virtualbox
+platforms:
+  - name: instance
+    box: ubuntu/focal64
+    config_options:
+      ssh.keep_alive: yes
+      ssh.remote_user: "'vagrant'"
+provisioner:
+  name: ansible
+scenario:
+  test_sequence:
+    - cleanup
+    - destroy
+    - syntax
+    - create
+    - prepare
+    - converge
+verifier:
+  name: ansible
