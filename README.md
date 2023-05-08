@@ -13,7 +13,6 @@
 2. Run the following commands; this will create a folder called `resource_test` in the repo root directory
 ```bash
 molecule init role acme.resource_test --driver-name vagrant
-molecule init scenario resource_test
 ```
 3. Copy the repo folders `molecule` and `tasks` into the newly created `resource_test` folder
 ```bash
