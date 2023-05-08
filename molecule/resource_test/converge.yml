@@ -3,6 +3,6 @@
   hosts: all
   gather_facts: false
   tasks:
-    - name: "Include test"
+    - name: "Include resource_test"
       ansible.builtin.include_role:
-        name: "test"
+        name: "resource_test"

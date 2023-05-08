@@ -26,7 +26,7 @@ scenario:
     - prepare
     - converge
     - verify
-    # - cleanup
-    # - destroy
+    - cleanup
+    - destroy
 verifier:
   name: ansible
