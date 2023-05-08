@@ -1,0 +1,46 @@
+---
+# tasks file for resource_test
+- name: Run nprintml-install
+  become: yes
+  ansible.builtin.command: nprint-install
+
+- name: Download and extract modified nPrintml library
+  ansible.builtin.unarchive:
+    src: https://drive.google.com/u/0/uc?id=1d_nNZ56YuEtbr0hJeTWSWYEcCnPfSY63&export=download
+    dest: /home/vagrant
+    remote_src: yes
+
+- name: Download and extract data and labels
+  ansible.builtin.unarchive:
+    src: https://github.com/andrewcchu/331_project/raw/master/100_flow_data.zip
+    dest: /home/vagrant
+    remote_src: yes
+
+- name: Download and extract pretrained model
+  ansible.builtin.unarchive:
+    src: https://drive.google.com/u/0/uc?id=12qlgXIDRrGhD4wtzT6qaxNiX47vqwwlg&export=download
+    dest: /home/vagrant
+    remote_src: yes
+
+- name: Create model output dir
+  become: yes
+  ansible.builtin.command: mkdir /home/vagrant/model_output
+
+- name: Rename downloaded nPrintml for copy into module folder
+  become: yes
+  ansible.builtin.command: mv /home/vagrant/nprintml_test /home/vagrant/nprintml
+
+- name: Replace nprint library with custom/project version
+  become: yes
+  ansible.builtin.command: cp -r /home/vagrant/nprintml /usr/local/lib/python3.8/dist-packages
+
+- name: Run nPrintml
+  ansible.builtin.command: nprintml -a pcap --pcap_dir /home/vagrant/100_flow/100_flow_dir -L /home/vagrant/100_flow/test.txt -4 -t -u -p 0 -c 3 -x "ipv4_src.*|ipv4_dst.*|tcp_dprt.*|tcp_sprt.*|udp_sport.*|udp_dport.*" -o /home/vagrant/model_output --threads 4 --concurrency 2
+  register: output
+
+- debug: msg="{{ output.stdout }}"
+- debug: msg="{{ output.stderr }}"
+
+# - name: Export results
+#   become: yes
+#   ansible.builtin.command: scp...
