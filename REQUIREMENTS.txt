@@ -1,0 +1,6 @@
+ansible
+ansible-compat==3.0.2
+ansible-lint
+molecule==4.0.4
+molecule-vagrant==2
+python-vagrant
