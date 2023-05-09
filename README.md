@@ -2,7 +2,9 @@
 ## Dependencies
 
 ### Application/Linux Software Dependencies
-* [Oracle VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+* Oracle VirtualBox
+  * Debian: `sudo apt-get update` and `sudo apt install virtualbox`
+  * macOS: `brew install virtualbox`
 * [Vagrant](https://developer.hashicorp.com/vagrant/downloads)
 * [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/installation_distros.html)
 
