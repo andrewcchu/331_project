@@ -8,7 +8,7 @@ driver:
 platforms:
   - name: instance
     box: ubuntu/focal64
-    memory: 4096
+    memory: 11000
     cpus: 2
     config_options:
       ssh.keep_alive: yes
